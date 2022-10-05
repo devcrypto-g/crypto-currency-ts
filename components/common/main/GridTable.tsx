@@ -1,7 +1,6 @@
 import { cloneDeep } from "lodash";
 import { useEffect, useRef, useState } from "react";
 import { symbol } from "../../../lib/constants";
-//import useSocket from "../../../lib/hooks/useSocket";
 import useSockets from "../../../lib/hooks/useSockets";
 import { numberWithCommas } from "../../../lib/utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,6 +10,8 @@ import {
   faArrowDown,
 } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
+import { useDispatch } from "react-redux";
+import { setTitle } from "../../../store/reducer/title";
 
 const upbitSocketUrl = "wss://api.upbit.com/websocket/v1";
 
@@ -21,6 +22,7 @@ const GridTable = () => {
   const [priceData, setPriceData] = useState([]);
   const [selected, setSelected] = useState<any>("");
   const [expanded, setExpanded] = useState(true);
+  const dispatch = useDispatch();
   // 업비트 소켓
   // const [fetchMessage, clearSocket, webScoket, resData] = useSocket();
 
@@ -41,15 +43,19 @@ const GridTable = () => {
     if (!secondRender.current) {
       secondRender.current = true;
     } else {
+      const index:any = dataRef.current.findIndex((item:any) => item.cd === selected.cd);
       if (!selected) {
         setSelected(dataRef.current[0]);
       }
+
+      if(index > -1){
+        const data:any = dataRef.current[index];
+        handleChangeTitle(data);
+      }
+
       setPriceData(dataRef.current);
     }
   }, [dataRef?.current]);
-
-  //console.log(priceData, "data");
-  console.log(selected, ":::::::::::");
 
   const onParseMessage = () => {
     const parseSymbol = cloneDeep(symbol);
@@ -69,6 +75,11 @@ const GridTable = () => {
     ];
 
     return payload;
+  };
+
+  const handleChangeTitle = (item: any) => {
+    const parseTitle = `${(item.cr * 100).toFixed(2)}% - ${numberWithCommas(item.tp)} ${item.cd}`;
+    dispatch(setTitle(parseTitle));
   };
 
   return (
@@ -99,6 +110,7 @@ const GridTable = () => {
                     if (selected.cd === item.cd) {
                       return;
                     } else {
+                      handleChangeTitle(item);
                       setSelected(item);
                     }
                   }}

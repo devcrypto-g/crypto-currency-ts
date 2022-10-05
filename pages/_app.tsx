@@ -1,6 +1,7 @@
 import "../styles/index.css";
 import type { AppProps } from "next/app";
 import Layout from "../components/common/Layout";
+import { wrapper } from '../store/index';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -10,4 +11,4 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
 }
 
-export default MyApp;
+export default wrapper.withRedux(MyApp);
