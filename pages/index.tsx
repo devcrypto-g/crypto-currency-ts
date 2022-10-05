@@ -20,7 +20,7 @@ const Home: NextPage = () => {
           crossOrigin="true"
         />
         <link
-          href={`https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap`}
+          href={`https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Permanent+Marker&display=swap`}
           rel="stylesheet"
         />
         <link rel="icon" href="/favicon.ico" />
