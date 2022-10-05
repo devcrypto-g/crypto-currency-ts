@@ -146,6 +146,7 @@ const GridTable = () => {
                           width="16"
                           height="16"
                           alt="-"
+                          priority
                         />
                       </span>
                       &nbsp;
