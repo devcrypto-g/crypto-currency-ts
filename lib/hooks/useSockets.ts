@@ -67,7 +67,7 @@ const useSockets = () => {
   useDidMountEffect(() => {
     ws.current.onopen = () => {
       if (messageRef.current) {
-        ws.current.send(JSON.stringify(messageRef.current));
+       // ws.current.send(JSON.stringify(messageRef.current));
       }
     };
 

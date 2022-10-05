@@ -14,12 +14,59 @@ html, body{
   background: #fff;
   font-size: 1.3444rem;
   color: #1DA2B4;
+  display: flex;
+}
+
+.header .menu ul{
+  margin-left: -30px;
+  display: flex;
+  list-style:none;
+  height: 100%;
+}
+
+.header .menu ul li{
+  margin: 10px;
+  height: 100%;
+  display: flex;
+  font-size: 0.7944rem;
+  flex-direction: column;
+  color: #666;
+  position: relative;
+}
+
+@media only screen and (min-width: 0px) and (max-width: 376px) {
+  .header .menu ul li{
+    margin: 3px;
+  }
+}
+
+@media only screen and (min-width: 0px) and (max-width: 300px) {
+  .header .menu ul li{
+    margin: 2px;
+  }
+}
+
+.top-statistics{
+  width: 100%;
+  height: 60px;
+  background: #fff;
+  border-bottom: 1px solid #ededed;
+  display: flex;
+}
+
+.top-statistics .item{
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 0.7333rem;
+  margin: 3px;
 }
 
 .content{
   width: 100%;
   height: auto;
-  min-height: calc(100vh - 163px);
+  min-height: calc(100vh - 226px);
   padding: 5px;
   box-sizing: border-box;
   overflow: hidden;
@@ -28,7 +75,18 @@ html, body{
 .footer{
   width: 100%;
   height: 100px;
-  background: green;
+  background: #fff;
+  border-top: 1px solid #ededed;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+@media only screen and (min-width: 1480px) and (max-width: 2080px) {
+  .footer{
+    justify-content: center;
+  }
 }
 
 .layout{

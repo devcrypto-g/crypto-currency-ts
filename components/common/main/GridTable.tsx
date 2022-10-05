@@ -77,8 +77,8 @@ const GridTable = () => {
         className="grid-table"
         style={{
           height: "auto",
-          maxHeight: expanded ? "6000px" : "280px",
-          transition: "0.5s cubic-bezier(0.6, 0.05, 0.28, 0.91)",
+          maxHeight: expanded ? "6000px" : "445px",
+          transition: "0.7s cubic-bezier(0.6, 0.05, 0.28, 0.91)",
           overflow: "hidden",
         }}
       >
@@ -93,6 +93,14 @@ const GridTable = () => {
                     display: "flex",
                     flexDirection: "row",
                     background: item.cd === selected.cd ? "#cff1ff" : "",
+                    transition: "all ease-in-out .3s",
+                  }}
+                  onClick={() => {
+                    if (selected.cd === item.cd) {
+                      return;
+                    } else {
+                      setSelected(item);
+                    }
                   }}
                 >
                   <div
@@ -125,9 +133,7 @@ const GridTable = () => {
                         />
                       </span>
                       &nbsp;
-                      <span className="over-text">
-                        {item.name}
-                      </span>
+                      <span className="over-text">{item.name}</span>
                     </div>
                     <div
                       style={{
