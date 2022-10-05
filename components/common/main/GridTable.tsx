@@ -125,7 +125,7 @@ const GridTable = () => {
                         />
                       </span>
                       &nbsp;
-                      <span className="over-text" style={{ height: "60%" }}>
+                      <span className="over-text">
                         {item.name}
                       </span>
                     </div>
@@ -185,7 +185,6 @@ const GridTable = () => {
                       전일대비 :&nbsp;
                       <span
                         style={{
-                          height: "50%",
                           color:
                             item.c === "RISE"
                               ? "#ec4c6a"
