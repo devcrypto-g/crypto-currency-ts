@@ -15,6 +15,7 @@ html, body{
   font-size: 1.3444rem;
   color: #1DA2B4;
   display: flex;
+  margin-top:60px;
 }
 
 .header .menu ul{
@@ -52,6 +53,9 @@ html, body{
   background: #fff;
   border-bottom: 1px solid #ededed;
   display: flex;
+  position: fixed;
+  top:0;
+  z-index: 99;
 }
 
 .top-statistics .item{
@@ -189,4 +193,53 @@ html, body{
   100% {
       background-color: rgba(165, 165, 165, 0.1);
   }
+}
+
+/*
+  table css
+*/
+
+.data-table{
+  padding: 10px;
+}
+
+table{
+  border-collapse: collapse;
+  user-select: none;
+  width: 100%;
+  
+  table-layout: fixed;
+}
+
+table tr{
+  border: 1px solid #e0e0e0;
+  border-right: none;
+  border-left: none;
+}
+
+table th{
+  padding:3px;
+  background: #fff;
+}
+
+table tr td{
+  text-align: center;
+  color: #828996;
+  background: #fff;
+  font-size: 0.7944rem;
+  line-height: 1rem;
+  height: 53px;
+  padding: 3px;
+}
+
+.center{
+  text-align: center;
+}
+
+.left{
+  text-align: left;
+}
+
+.right{
+  text-align: right;
 }
