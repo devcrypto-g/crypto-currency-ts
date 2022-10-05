@@ -7,7 +7,9 @@ const Header = () => {
         alignItems: "center",
       }}
     >
-      <span className="eng">kough.kr</span>
+      <span className="eng" style={{ margin: "10px" }}>
+        kough.kr
+      </span>
     </div>
   );
 };

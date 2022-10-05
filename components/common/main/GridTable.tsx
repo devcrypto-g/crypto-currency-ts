@@ -5,7 +5,11 @@ import { symbol } from "../../../lib/constants";
 import useSockets from "../../../lib/hooks/useSockets";
 import { numberWithCommas } from "../../../lib/utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFire } from "@fortawesome/free-solid-svg-icons";
+import {
+  faFire,
+  faArrowUp,
+  faArrowDown,
+} from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 
 const upbitSocketUrl = "wss://api.upbit.com/websocket/v1";
@@ -73,8 +77,8 @@ const GridTable = () => {
         className="grid-table"
         style={{
           height: "auto",
-          maxHeight: expanded ? "3000px" : "280px",
-          transition: "0.7s cubic-bezier(0.6, 0.05, 0.28, 0.91)",
+          maxHeight: expanded ? "6000px" : "280px",
+          transition: "0.5s cubic-bezier(0.6, 0.05, 0.28, 0.91)",
           overflow: "hidden",
         }}
       >
@@ -109,17 +113,19 @@ const GridTable = () => {
                         paddingLeft: "3px",
                       }}
                     >
-                      <Image
-                        src={`https://static.upbit.com/logos/${item.cd.replace(
-                          "KRW-",
-                          ""
-                        )}.png`}
-                        width="16"
-                        height="16"
-                        alt="-"
-                      />
+                      <span>
+                        <Image
+                          src={`https://static.upbit.com/logos/${item.cd.replace(
+                            "KRW-",
+                            ""
+                          )}.png`}
+                          width="16"
+                          height="16"
+                          alt="-"
+                        />
+                      </span>
                       &nbsp;
-                      <span className="over-text" style={{ height: "48%" }}>
+                      <span className="over-text" style={{ height: "60%" }}>
                         {item.name}
                       </span>
                     </div>
@@ -133,11 +139,11 @@ const GridTable = () => {
                         paddingLeft: "3px",
                       }}
                     >
+                      <span>{item.cd.replace("KRW-", "")}&nbsp; </span>
                       <span>
-                        {item.cd.replace("KRW-", "")}&nbsp;{" "}
                         <FontAwesomeIcon
                           icon={faFire}
-                          style={{ color: "#ffdc73" }}
+                          style={{ color: "#ffdc73", width: "12px" }}
                         />
                       </span>
                     </div>
@@ -176,7 +182,7 @@ const GridTable = () => {
                         paddingLeft: "3px",
                       }}
                     >
-                      전일대비 :
+                      전일대비 :&nbsp;
                       <span
                         style={{
                           height: "50%",
@@ -189,9 +195,9 @@ const GridTable = () => {
                         }}
                       >
                         {sign}
-                        {`${+(item.cr * 100).toFixed(2)}%`}
+                        {`${(item.cr * 100).toFixed(2)}%`}
                       </span>
-                      &nbsp;|&nbsp;김프 : <span>1.2%</span>
+                      &nbsp;|&nbsp;김프 :&nbsp;<span>1.2%</span>
                     </div>
                   </div>
                 </div>
@@ -202,10 +208,22 @@ const GridTable = () => {
             })}
       </div>
       <div
-        style={{ height: "30px", background: "yellow" }}
+        style={{
+          height: "30px",
+          position: "relative",
+          background: "#d8d8d2",
+          borderBottomLeftRadius: "5px",
+          borderBottomRightRadius: "5px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
         onClick={() => setExpanded(!expanded)}
       >
-        버튼{expanded + ""}
+        <FontAwesomeIcon
+          style={{ fontSize: "0.7333rem", height: "50%", color: "#fff" }}
+          icon={expanded ? faArrowUp : faArrowDown}
+        />
       </div>
     </div>
   );
