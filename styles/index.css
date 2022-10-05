@@ -16,6 +16,7 @@ html, body{
   color: #1DA2B4;
   display: flex;
   margin-top:60px;
+  user-select: none;
 }
 
 .header .menu ul{
@@ -23,6 +24,7 @@ html, body{
   display: flex;
   list-style:none;
   height: 100%;
+  user-select: none;
 }
 
 .header .menu ul li{
@@ -110,6 +112,7 @@ html, body{
   padding: 5px;
   box-sizing: border-box;
   white-space: nowrap;
+  user-select: none;
 }
 
 
@@ -207,7 +210,6 @@ table{
   border-collapse: collapse;
   user-select: none;
   width: 100%;
-  
   table-layout: fixed;
 }
 

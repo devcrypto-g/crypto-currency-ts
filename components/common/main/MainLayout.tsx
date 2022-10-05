@@ -43,7 +43,7 @@ const MainLayout = () => {
               justifyContent: "center",
               alignItems: "center",
               margin: "3px",
-              transition: "all ease-in-out .3s",
+              transition: "all ease-in-out .5s",
             }}
             onClick={() => {
               if (type === 0) {
@@ -69,7 +69,7 @@ const MainLayout = () => {
               justifyContent: "center",
               alignItems: "center",
               margin: "3px",
-              transition: "all ease-in-out .3s",
+              transition: "all ease-in-out .5s",
             }}
             onClick={() => {
               if (type === 1) {

@@ -108,7 +108,7 @@ const GridTable = () => {
                     display: "flex",
                     flexDirection: "row",
                     background: item.cd === selected.cd ? "#cff1ff" : "",
-                    transition: "all ease-in-out .3s",
+                    transition: "all ease-in-out .5s",
                   }}
                   onClick={() => {
                     if (selected.cd === item.cd) {
