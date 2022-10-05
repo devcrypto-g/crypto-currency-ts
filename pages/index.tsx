@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 
 const Home: NextPage = () => {
   const { title } = useSelector((state: any) => state.title);
-  //console.log(title, "::::::::::::::::::::::;");
   return (
     <div>
       <Head>

@@ -1,5 +1,5 @@
 import { cloneDeep } from "lodash";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { symbol } from "../../../lib/constants";
 import useSockets from "../../../lib/hooks/useSockets";
 import { numberWithCommas } from "../../../lib/utils";
@@ -43,13 +43,15 @@ const GridTable = () => {
     if (!secondRender.current) {
       secondRender.current = true;
     } else {
-      const index:any = dataRef.current.findIndex((item:any) => item.cd === selected.cd);
+      const index: any = dataRef.current.findIndex(
+        (item: any) => item.cd === selected.cd
+      );
       if (!selected) {
         setSelected(dataRef.current[0]);
       }
 
-      if(index > -1){
-        const data:any = dataRef.current[index];
+      if (index > -1) {
+        const data: any = dataRef.current[index];
         handleChangeTitle(data);
       }
 
@@ -77,10 +79,12 @@ const GridTable = () => {
     return payload;
   };
 
-  const handleChangeTitle = (item: any) => {
-    const parseTitle = `${(item.cr * 100).toFixed(2)}% - ${numberWithCommas(item.tp)} ${item.cd}`;
+  const handleChangeTitle = useCallback((item: any) => {
+    const parseTitle = `${(item.cr * 100).toFixed(2)}% - ${numberWithCommas(
+      item.tp
+    )} ${item.cd}`;
     dispatch(setTitle(parseTitle));
-  };
+  }, []);
 
   return (
     <div style={{ height: "100%", position: "relative" }}>
