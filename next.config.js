@@ -6,6 +6,9 @@ const nextConfig = {
     domains: ["static.upbit.com"],
     formats: ["image/avif", "image/webp"],
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 module.exports = nextConfig;

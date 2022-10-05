@@ -15,7 +15,7 @@ const GridTable = () => {
   const secondRender = useRef(false);
   const { ws, dataRef, onSetMessage, onSetUrl } = useSockets();
   const [priceData, setPriceData] = useState([]);
-  const [selected, setSelected] = useState("");
+  const [selected, setSelected] = useState<any>("");
   const [expanded, setExpanded] = useState(true);
   // 업비트 소켓
   // const [fetchMessage, clearSocket, webScoket, resData] = useSocket();

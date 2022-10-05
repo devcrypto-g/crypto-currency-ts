@@ -1,7 +1,6 @@
 import "../styles/index.css";
 import type { AppProps } from "next/app";
 import Layout from "../components/common/Layout";
-/* eslint-disable */
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
