@@ -26,7 +26,7 @@ const Header = () => {
         alignItems: "center",
       }}
     >
-      <span className="eng" style={{ margin: "10px" }}>
+      <span className="eng" style={{ margin: "10px" }} onClick={() => handleChangePath("/")}>
         kough.kr
       </span>
       <div className="menu">
