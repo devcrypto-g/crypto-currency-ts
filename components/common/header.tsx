@@ -1,14 +1,15 @@
 const Header = () => {
-  return <div className="header">
-    <div className="flex-row">
-      <div>
-        <span>TESTPAGE</span>
-      </div>
-      <div>
-        <span>TESTPAGE</span>
-      </div>
+  return (
+    <div
+      className="header"
+      style={{
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
+      <span className="eng">kough.kr</span>
     </div>
-  </div>
-}
+  );
+};
 
 export default Header;

@@ -11,6 +11,8 @@ html, body{
   width: 100%;
   height: 63px;
   background: #fff;
+  font-size: 1.3444rem;
+  color: #1DA2B4;
 }
 
 .content{
@@ -19,6 +21,7 @@ html, body{
   min-height: calc(100vh - 163px);
   padding: 5px;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .footer{
@@ -38,31 +41,57 @@ html, body{
   width: 100%;
   height: auto;
   display: grid;
-  grid-template-columns: repeat(10, auto);
+  grid-template-columns: repeat(7, minmax(150px, 1fr));
   grid-template-rows: auto auto;
   grid-gap: 5px;
   padding: 5px;
   box-sizing: border-box;
+  white-space: nowrap;
+}
+
+
+/*
+  시세 정보 반응형 쿼리
+*/
+@media only screen and (min-width: 0px) and (max-width: 576px) {
+  .grid-table{
+    grid-template-columns: repeat(1, minmax(150px, 1fr));
+  }
+}
+
+
+@media only screen and (min-width: 576px) and (max-width: 976px) {
+  .grid-table{
+    grid-template-columns: repeat(3, minmax(150px, 1fr));
+  }
+}
+
+@media only screen and (min-width: 976px) and (max-width: 1240px) {
+  .grid-table{
+    grid-template-columns: repeat(4, minmax(150px, 1fr));
+  }
+}
+
+@media only screen and (min-width: 1240px) and (max-width: 1560px) {
+  .grid-table{
+    grid-template-columns: repeat(5, minmax(150px, 1fr));
+  }
 }
 
 .grid-table .item{
   height: 50px;
-  background: yellow;
+  background-color: rgba(165, 165, 165, 0.1);
 }
 
+.over-text{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
+.eng{
+  font-family: 'Permanent Marker', cursive;
+}
 
 .skeleton-list-item {
   -webkit-animation: skeleton-gradient 1.8s infinite ease-in-out;
