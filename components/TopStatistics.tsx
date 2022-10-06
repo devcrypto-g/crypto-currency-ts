@@ -12,7 +12,7 @@ const TopStatistics = () => {
     fetchData();
     const interval = setInterval(() => {
       fetchData();
-    }, 30000);
+    }, 300000);
 
     return () => clearInterval(interval);
   }, []);
