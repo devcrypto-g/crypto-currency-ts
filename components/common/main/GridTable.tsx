@@ -12,7 +12,8 @@ import {
 import Image from "next/image";
 import { useDispatch } from "react-redux";
 import { setTitle } from "../../../store/reducer/title";
-import * as APIS from "../../../lib/apis";
+import Head from "next/head";
+import { useSelector } from "react-redux";
 
 const upbitSocketUrl = "wss://api.upbit.com/websocket/v1";
 
@@ -23,6 +24,7 @@ const GridTable = () => {
   const [priceData, setPriceData] = useState([]);
   const [selected, setSelected] = useState<any>("");
   const [expanded, setExpanded] = useState(true);
+  const { title } = useSelector((state:any) => state.title);
   const dispatch = useDispatch();
   // 업비트 소켓
   // const [fetchMessage, clearSocket, webScoket, resData] = useSocket();
@@ -39,12 +41,6 @@ const GridTable = () => {
       onSetMessage(message);
     }
   }, [ws.current]);
-
-  useEffect(() => {
-    APIS.getData().then((res) => {
-      console.log(res, "res");
-    });
-  }, []);
 
   useEffect(() => {
     if (!secondRender.current) {
@@ -93,7 +89,13 @@ const GridTable = () => {
     dispatch(setTitle(parseTitle));
   }, []);
 
+  
+
   return (
+    <>
+    <Head>
+      <title>{title}</title>
+    </Head>
     <div style={{ height: "100%", position: "relative" }}>
       <div
         className="grid-table"
@@ -145,7 +147,7 @@ const GridTable = () => {
                       }}
                     >
                       <span>
-                        <Image
+                        {/* <Image
                           src={`https://static.upbit.com/logos/${item.cd.replace(
                             "KRW-",
                             ""
@@ -154,7 +156,7 @@ const GridTable = () => {
                           height="16"
                           alt="-"
                           priority
-                        />
+                        /> */}
                       </span>
                       &nbsp;
                       <span className="over-text">{item.name}</span>
@@ -255,6 +257,7 @@ const GridTable = () => {
         />
       </div>
     </div>
+    </>
   );
 };
 

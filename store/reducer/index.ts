@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
 import title from "./title";
+import price from "./price";
 
 const rootReducer = combineReducers({
-  title
+  title,
+  price,
 });
 
 export default rootReducer;
