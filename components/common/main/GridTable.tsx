@@ -12,6 +12,7 @@ import {
 import Image from "next/image";
 import { useDispatch } from "react-redux";
 import { setTitle } from "../../../store/reducer/title";
+import * as APIS from "../../../lib/apis";
 
 const upbitSocketUrl = "wss://api.upbit.com/websocket/v1";
 
@@ -38,6 +39,12 @@ const GridTable = () => {
       onSetMessage(message);
     }
   }, [ws.current]);
+
+  useEffect(() => {
+    APIS.getData().then((res) => {
+      console.log(res, "res");
+    });
+  }, []);
 
   useEffect(() => {
     if (!secondRender.current) {
