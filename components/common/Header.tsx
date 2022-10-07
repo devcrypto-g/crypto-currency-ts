@@ -26,14 +26,18 @@ const Header = () => {
         alignItems: "center",
       }}
     >
-      <span className="eng" style={{ margin: "10px" }} onClick={() => handleChangePath("/")}>
+      <span
+        className="eng"
+        style={{ margin: "10px" }}
+        onClick={() => handleChangePath("/")}
+      >
         kough.kr
       </span>
       <div className="menu">
         <ul>
           {menu.map((item) => {
             return (
-              <li onClick={() => handleChangePath(item.path)}>
+              <li key={item.title} onClick={() => handleChangePath(item.path)}>
                 <span style={{ marginBottom: "3px" }}>{item?.title || ""}</span>
                 <div
                   style={{

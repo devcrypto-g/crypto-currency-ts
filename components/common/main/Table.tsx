@@ -86,11 +86,13 @@ const Table = () => {
     <div>
       <table>
         <thead>
-          <th className="left">코인</th>
-          <th className="right">가격</th>
-          <th className="right">프리미엄</th>
-          <th className="right">전일대비</th>
-          <th className="right">거래액(일)</th>
+          <tr>
+            <th className="left">코인</th>
+            <th className="right">가격</th>
+            <th className="right">프리미엄</th>
+            <th className="right">전일대비</th>
+            <th className="right">거래액(일)</th>
+          </tr>
         </thead>
         <tbody>
           {priceData.map((item: any, index) => {

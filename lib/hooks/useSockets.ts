@@ -23,7 +23,7 @@ const useSockets = () => {
   let ws: any = useRef(null);
   const urlRef = useRef("");
   const urlRender = useRef(false);
-  const dataRef = useRef([]);
+  const dataRef = useRef<any>([]);
   const messageRef = useRef<string | object>("");
   const [socket, setSocket] = useState({});
   const [url, setUrl] = useState("");
@@ -61,7 +61,9 @@ const useSockets = () => {
 
   // 소켓 닫기
   const closeSocket = () => {
-    ws.current.close();
+    if(ws.current){
+      ws.current.close();
+    }
   };
 
   useDidMountEffect(() => {
@@ -72,28 +74,63 @@ const useSockets = () => {
     };
 
     ws.current.onmessage = (e: any) => {
-      const enc = new TextDecoder("utf-8");
-      const arr = new Uint8Array(e.data);
-      const str_d = enc.decode(arr);
-      const d = JSON.parse(str_d);
-      const name = symbol.find((item) => item.market === d.cd)?.korean_name || "-";
-      const index = dataRef.current.findIndex((item: any) => item.cd === d.cd);
-      let copyData: any = cloneDeep(dataRef.current);
-      if (index > -1) {
-        copyData[index] = {
-          ...copyData[index],
-          ...d,
-        };
-        dataRef.current = copyData;
-        setData(dataRef.current);
+      if (e.currentTarget.url.includes("binance")) {
+        const biData = JSON.parse(e.data);
+        let copyData: any = cloneDeep(dataRef.current);
+        const index = dataRef.current.findIndex(
+          (item: any) => item.s === biData.s
+        );
+        if (index > -1) {
+          copyData[index] = {
+            ...copyData[index],
+            ...biData,
+          };
+          dataRef.current = copyData;
+          setData(dataRef.current);
+        } else {
+          dataRef.current = dataRef.current.concat({
+            ...biData,
+          });
+          setData(dataRef.current);
+        }
       } else {
-        dataRef.current = dataRef.current.concat({
-          ...d,
-          name: name
-        });
-        setData(dataRef.current);
+        const enc = new TextDecoder("utf-8");
+        const arr = new Uint8Array(e.data);
+        const str_d = enc.decode(arr);
+        const d = JSON.parse(str_d);
+        const name =
+          symbol.find((item) => item.market === d.cd)?.korean_name || "-";
+        const index = dataRef.current.findIndex(
+          (item: any) => item.cd === d.cd
+        );
+        let copyData: any = cloneDeep(dataRef.current);
+        let copySort: any = cloneDeep(dataRef.current);
+        copySort = copySort
+          .sort((a: any, b: any) => {
+            return b.atp24h - a.atp24h;
+          })
+          .slice(0, 5);
+        if (index > -1) {
+          copyData[index] = {
+            ...copyData[index],
+            ...d,
+            hot: copySort.find((item: any) => item.cd === copyData[index].cd)
+              ? true
+              : false,
+          };
+          dataRef.current = copyData;
+          setData(dataRef.current);
+        } else {
+          dataRef.current = dataRef.current.concat({
+            ...d,
+            name: name,
+            hot: copySort.find((item: any) => item.cd === copyData[index]?.cd)
+              ? true
+              : false,
+          });
+          setData(dataRef.current);
+        }
       }
-
       // setData(e);
       // 여기서 res로 받은 데이터를 setData 후 => return data를 전달
     };
