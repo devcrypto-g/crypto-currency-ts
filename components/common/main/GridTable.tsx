@@ -278,12 +278,12 @@ const GridTable = () => {
                           {sign}
                           {`${(item.cr * 100).toFixed(2)}%`}
                           {item?.kcr && (
-                            <>
+                            <span style={{ color: "#666" }}>
                               &nbsp;|&nbsp;김프 :&nbsp;
                               <span>
                                 {item.kcr ? `${item?.kcr?.toFixed(2)}%` : ""}
                               </span>
-                            </>
+                            </span>
                           )}
                         </span>
                       </div>
