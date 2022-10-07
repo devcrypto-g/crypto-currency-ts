@@ -277,10 +277,14 @@ const GridTable = () => {
                         >
                           {sign}
                           {`${(item.cr * 100).toFixed(2)}%`}
-                        </span>
-                        &nbsp;|&nbsp;김프 :&nbsp;
-                        <span>
-                          {item.kcr ? `${item?.kcr?.toFixed(2)}%` : ""}
+                          {item?.kcr && (
+                            <>
+                              &nbsp;|&nbsp;김프 :&nbsp;
+                              <span>
+                                {item.kcr ? `${item?.kcr?.toFixed(2)}%` : ""}
+                              </span>
+                            </>
+                          )}
                         </span>
                       </div>
                     </div>
