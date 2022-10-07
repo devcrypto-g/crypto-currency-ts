@@ -129,7 +129,7 @@ const GridTable = () => {
   };
 
   const handleChangeTitle = useCallback((item: any) => {
-    const parseTitle = `${item.kcr.toFixed(2)}% - ${numberWithCommas(
+    const parseTitle = `${item.kcr?.toFixed(2) || "0.00"}% - ${numberWithCommas(
       item.tp
     )} ${item.cd}`;
     dispatch(setTitle(parseTitle));
