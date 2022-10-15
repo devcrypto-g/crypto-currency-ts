@@ -54,14 +54,16 @@ const useSockets = () => {
 
   // 소켓 생성
   const createSocket = useCallback(() => {
-    ws.current = new WebSocket(urlRef.current);
-    ws.current.binaryType = "arraybuffer";
-    setSocket(ws.current);
+    if (urlRef.current) {
+      ws.current = new WebSocket(urlRef.current);
+      ws.current.binaryType = "arraybuffer";
+      setSocket(ws.current);
+    }
   }, []);
 
   // 소켓 닫기
   const closeSocket = () => {
-    if(ws.current){
+    if (ws.current) {
       ws.current.close();
     }
   };
@@ -89,6 +91,7 @@ const useSockets = () => {
           setData(dataRef.current);
         } else {
           dataRef.current = dataRef.current.concat({
+            ...dataRef.current[index],
             ...biData,
           });
           setData(dataRef.current);

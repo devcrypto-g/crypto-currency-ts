@@ -245,3 +245,22 @@ table tr td{
 .right{
   text-align: right;
 }
+
+.alerts-border-fall {
+  border: 1px #4b89ff solid;
+  
+  animation: blink 1s;
+  animation-iteration-count: 2;
+}
+
+.alerts-border-rise {
+  border: 1px #ec4c6a solid;
+  animation: blink 1s;
+  animation-iteration-count: 2;
+}
+
+.alerts-border-none {
+  border: 1px #fff solid;
+}
+
+@keyframes blink { 50% { border-color:#fff ; }  }
