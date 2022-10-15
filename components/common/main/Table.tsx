@@ -23,147 +23,151 @@ const Table = (props: any) => {
   return (
     <>
       <div>
-        <table>
-          <thead>
-            <tr>
-              <th className="left">코인</th>
-              <th className="right">가격</th>
-              <th className="right">프리미엄</th>
-              <th className="right">전일대비</th>
-              <th className="right">거래액(일)</th>
-            </tr>
-          </thead>
-          <tbody>
-            {priceData.map((item: any, index: any) => {
-              const sign =
-                item?.c === "RISE" ? "+" : item.c === "FALL" ? "-" : " ";
-              return (
-                <tr
-                  key={`${item.cd}-${index}`}
-                  onClick={() => {
-                    if (selected.cd === item.cd) {
-                      return;
-                    } else {
-                      handleChangeTitle(item);
-                      setSelected(item);
-                    }
-                  }}
-                >
-                  <td style={{ textAlign: "left" }}>
-                    <div
-                      style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "flex-start",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <div
-                        style={{ display: "flex", alignItems: "flex-start" }}
-                      >
-                        <span>
-                          <Image
-                            src={`https://static.upbit.com/logos/${item.cd.replace(
-                              "KRW-",
-                              ""
-                            )}.png`}
-                            width="16"
-                            height="16"
-                            alt="-"
-                            priority
-                          />
-                        </span>
-                        &nbsp;
-                        <span>{item.name}</span>
-                      </div>
-                      <div
-                        style={{ display: "flex", alignItems: "flex-start" }}
-                      >
-                        <span>
-                          <FontAwesomeIcon
-                            icon={faStar}
-                            style={{ width: "16px", height: "16px" }}
-                            color={"#FFD400"}
-                          />
-                        </span>
-                        &nbsp;
-                        <span>{item.cd.replace("KRW-", "")}</span>
-                      </div>
-                    </div>
-                  </td>
-                  <td
-                    className="right"
-                    style={{
-                      color:
-                        item.c === "RISE"
-                          ? "#ec4c6a"
-                          : item.c === "FALL"
-                          ? "#4b89ff"
-                          : "#666",
+        <div>
+          <table>
+            <thead>
+              <tr>
+                <th className="left">코인</th>
+                <th className="right">가격</th>
+                <th className="right">프리미엄</th>
+                <th className="right">전일대비</th>
+                <th className="right">거래액(일)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {priceData.map((item: any, index: any) => {
+                const sign =
+                  item?.c === "RISE" ? "+" : item.c === "FALL" ? "-" : " ";
+                return (
+                  <tr
+                    key={`${item.cd}-${index}`}
+                    onClick={() => {
+                      if (selected.cd === item.cd) {
+                        return;
+                      } else {
+                        handleChangeTitle(item);
+                        setSelected(item);
+                      }
                     }}
                   >
-                    <ColorText ch={item.c} val={item.tp}>
-                      {numberWithCommas(item.tp)}
-                    </ColorText>
-                    <br />
-                    <span style={{ color: "#666" }}>
-                      {(+item.kimpPrice)?.toFixed(0) !== "NaN" &&
-                        numberWithCommas((+item.kimpPrice)?.toFixed(0) || "")}
-                    </span>
-                  </td>
-                  <td className="right">
-                    <span
+                    <td style={{ textAlign: "left" }}>
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "flex-start",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <div
+                          style={{ display: "flex", alignItems: "flex-start" }}
+                        >
+                          <span>
+                            <Image
+                              src={`https://static.upbit.com/logos/${item.cd.replace(
+                                "KRW-",
+                                ""
+                              )}.png`}
+                              width="16"
+                              height="16"
+                              alt="-"
+                              priority
+                            />
+                          </span>
+                          &nbsp;
+                          <span>{item.name}</span>
+                        </div>
+                        <div
+                          style={{ display: "flex", alignItems: "flex-start" }}
+                        >
+                          <span>
+                            <FontAwesomeIcon
+                              icon={faStar}
+                              style={{ width: "16px", height: "16px" }}
+                              color={"#FFD400"}
+                            />
+                          </span>
+                          &nbsp;
+                          <span>{item.cd.replace("KRW-", "")}</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      className="right"
                       style={{
                         color:
-                          item.kcr > 0
+                          item.c === "RISE"
                             ? "#ec4c6a"
-                            : item.kcr < 0
+                            : item.c === "FALL"
                             ? "#4b89ff"
                             : "#666",
                       }}
                     >
-                      {item.kcr > 0 && item.kcr && "+"}
-                      {item.kcr ? `${item?.kcr?.toFixed(2)}%` : ""}
+                      <ColorText ch={item.c} val={item.tp}>
+                        {numberWithCommas(item.tp)}
+                      </ColorText>
                       <br />
                       <span style={{ color: "#666" }}>
-                        {item.tp - item.kimpPrice > 0 && item.kimpPrice && "+"}
-                        {numberWithCommas(
-                          +(item.tp - item.kimpPrice)?.toFixed(4) || ""
-                        ) || ""}
+                        {(+item.kimpPrice)?.toFixed(0) !== "NaN" &&
+                          numberWithCommas((+item.kimpPrice)?.toFixed(0) || "")}
                       </span>
-                    </span>
-                  </td>
-                  <td
-                    className="right"
-                    style={{
-                      color:
-                        item.c === "RISE"
-                          ? "#ec4c6a"
-                          : item.c === "FALL"
-                          ? "#4b89ff"
-                          : "#666",
-                    }}
-                  >
-                    {sign}
-                    {(item.cr * 100).toFixed(2)}%
-                  </td>
-                  <td className="right">
-                    <span>
-                      {/* {parseNum(item?.acc_trade_price_24h || 0)} */}
-                      {numberWithCommas((item.atp24h / 1000000)?.toFixed(0))}
-                      백만
-                    </span>
-                    <br />
-                    <span>
-                      {/* {parseNum(item?.acc_trade_price || 0)} */}
-                      {numberWithCommas((item.atp / 1000000)?.toFixed(0))}백만
-                    </span>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+                    </td>
+                    <td className="right">
+                      <span
+                        style={{
+                          color:
+                            item.kcr > 0
+                              ? "#ec4c6a"
+                              : item.kcr < 0
+                              ? "#4b89ff"
+                              : "#666",
+                        }}
+                      >
+                        {item.kcr > 0 && item.kcr && "+"}
+                        {item.kcr ? `${item?.kcr?.toFixed(2)}%` : ""}
+                        <br />
+                        <span style={{ color: "#666" }}>
+                          {item.tp - item.kimpPrice > 0 &&
+                            item.kimpPrice &&
+                            "+"}
+                          {numberWithCommas(
+                            +(item.tp - item.kimpPrice)?.toFixed(4) || ""
+                          ) || ""}
+                        </span>
+                      </span>
+                    </td>
+                    <td
+                      className="right"
+                      style={{
+                        color:
+                          item.c === "RISE"
+                            ? "#ec4c6a"
+                            : item.c === "FALL"
+                            ? "#4b89ff"
+                            : "#666",
+                      }}
+                    >
+                      {sign}
+                      {(item.cr * 100).toFixed(2)}%
+                    </td>
+                    <td className="right">
+                      <span>
+                        {/* {parseNum(item?.acc_trade_price_24h || 0)} */}
+                        {numberWithCommas((item.atp24h / 1000000)?.toFixed(0))}
+                        백만
+                      </span>
+                      <br />
+                      <span>
+                        {/* {parseNum(item?.acc_trade_price || 0)} */}
+                        {numberWithCommas((item.atp / 1000000)?.toFixed(0))}백만
+                      </span>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
     </>
   );
@@ -184,7 +188,7 @@ const ColorText = (props: any) => {
       setCheck(true);
       setTimeout(() => {
         setCheck(false);
-      }, 2000);
+      }, 1500);
     }
   }, [val]);
 

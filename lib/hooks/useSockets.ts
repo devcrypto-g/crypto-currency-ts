@@ -88,13 +88,11 @@ const useSockets = () => {
             ...biData,
           };
           dataRef.current = copyData;
-          setData(dataRef.current);
         } else {
           dataRef.current = dataRef.current.concat({
             ...dataRef.current[index],
             ...biData,
           });
-          setData(dataRef.current);
         }
       } else {
         const enc = new TextDecoder("utf-8");

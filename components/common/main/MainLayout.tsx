@@ -148,18 +148,21 @@ const MainLayout = () => {
           <div
             style={{
               height: "30px",
-              width: "100px",
+              width: "20%",
               background: "#ededed",
               display: "flex",
-              justifyContent: "center",
+              justifyContent: "flex-end",
               alignItems: "center",
               borderRadius: "5px",
               padding: "5px",
             }}
           >
+            <div style={{ display: "flex", alignItems: "center", marginRight: "10px"}}>
+              
+            </div>
             <div
               style={{
-                width: "45%",
+                width: "50px",
                 height: "100%",
                 borderRadius: "5px",
                 background: type === 0 ? "#fff" : "#ededed",
@@ -185,7 +188,7 @@ const MainLayout = () => {
 
             <div
               style={{
-                width: "45%",
+                width: "50px",
                 height: "100%",
                 borderRadius: "5px",
                 background: type === 1 ? "#fff" : "#ededed",
